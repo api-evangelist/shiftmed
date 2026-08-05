@@ -1,0 +1,93 @@
+generated: '2026-08-05'
+method: probed
+source: live probes of the /.well-known/ surface on every ShiftMed host
+summary:
+  documents_found: 0
+  note: 'ShiftMed publishes no /.well-known/ discovery documents on any host. No
+    security.txt, no OIDC/OAuth discovery, no api-catalog, no ai-plugin, no A2A agent
+    card. No WellKnown or SecurityTxt pointer is wired in apis.yml because nothing
+    is present — recording the probe, not crediting a surface.'
+soft_404_warning: 'api.shiftmed.com serves an unrelated React single-page app (page
+  title "I9 Section 2", webpack bundle "i9-ui") whose catch-all answers HTTP 200 with
+  a 2,256-byte HTML shell for EVERY unmatched path, including every /.well-known/*
+  path and every spec path. Those 200s are soft-404s and are recorded as such — a
+  200 is not evidence. The control diff is the identical byte length and identical
+  HTML body across all paths, versus a real JSON 404 ({"err":"Not Found"}) from the
+  /v1 backend.'
+hosts:
+- host: https://www.shiftmed.com
+  catch_all: none
+  control_probe:
+    path: /.well-known/ae-control-probe
+    status: 404
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+- host: https://api.shiftmed.com
+  catch_all: spa-html-200
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    verdict: soft-404 (HTML SPA shell, rejected)
+  - path: /.well-known/openid-configuration
+    status: 200
+    verdict: soft-404 (HTML SPA shell, rejected)
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    verdict: soft-404 (HTML SPA shell, rejected)
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    verdict: soft-404 (HTML SPA shell, rejected)
+  - path: /.well-known/api-catalog
+    status: 200
+    verdict: soft-404 (HTML SPA shell, rejected)
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    verdict: soft-404 (HTML SPA shell, rejected)
+  - path: /.well-known/agent-card.json
+    status: 200
+    verdict: soft-404 (HTML SPA shell, rejected)
+  - path: /.well-known/agent.json
+    status: 200
+    verdict: soft-404 (HTML SPA shell, rejected)
+- host: https://portal.shiftmed.com
+  catch_all: s3-403
+  documents:
+  - path: /.well-known/agent-card.json
+    status: 403
+  - path: /.well-known/security.txt
+    status: 403
+- host: https://ondemand.shiftmed.com
+  documents:
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/security.txt
+    status: 404
+- host: https://experience.shiftmed.com
+  documents:
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/security.txt
+    status: 404
+- host: https://learning.shiftmed.com
+  documents:
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/security.txt
+    status: 404

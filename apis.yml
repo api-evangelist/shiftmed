@@ -1,23 +1,121 @@
 aid: shiftmed
 name: ShiftMed
-description: 'ShiftMed is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'ShiftMed is a McLean, Virginia healthcare workforce technology company
+  operating an on-demand clinician marketplace and AI-powered open shift management
+  platform for hospitals, health systems, skilled nursing facilities and post-acute
+  providers. It matches credentialed W-2 CNAs, LPNs and RNs to open shifts, and markets
+  an API that lets a facility tap that clinician network directly from its own scheduling
+  stack. The API surface reaches customers through workforce-management partner integrations
+  — UKG Pro Workforce Management (formerly UKG Dimensions), symplr Smart Square, QGenda,
+  Smartlinx and Attendance on Demand — alongside file-based SFTP feeds. ShiftMed publishes
+  no public developer portal, documentation, specification or SDK; API access is arranged
+  through a workforce consultation.'
+image: https://images.ctfassets.net/5ghoewqh73wu/1g43njpFzYtQFmeTGNhdcN/b98de6dbb6af4fafc7c41b2a714307f8/Home_Hero_HighRes.webp
 url: https://raw.githubusercontent.com/api-evangelist/shiftmed/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-08-05'
 modified: '2026-08-05'
 tags:
 - Company
-apis: []
+- Healthcare
+- Staffing
+- Workforce Management
+- Scheduling
+- Marketplace
+- Nursing
+- Human Resources
+- Health Systems
+apis:
+- name: ShiftMed Workforce API
+  description: 'ShiftMed markets an API that lets a hospital, health system or post-acute
+    facility tap its network of credentialed CNAs, LPNs and RNs and fill open shifts
+    on demand from within its existing scheduling system. ShiftMed describes it publicly
+    as a "public API" that "can be embedded in health system platforms", delivered
+    alongside file-based (SFTP) integration. No specification, reference documentation
+    or developer portal is published; the production host answers on /v1 but access
+    is arranged through a workforce consultation.'
+  humanURL: https://www.shiftmed.com/about/partners/
+  baseURL: https://api.shiftmed.com/v1
+  tags:
+  - Workforce Management
+  - Scheduling
+  - Staffing
+  - Healthcare
+  properties:
+  - type: Website
+    url: https://www.shiftmed.com/
+  x-evidence:
+    fetched: '2026-08-05'
+    base_url_probe:
+      url: https://api.shiftmed.com/v1/health
+      http_status: 200
+      body: '{"version":"1","health":"Healthy"}'
+    claim_source: https://www.shiftmed.com/about/partners/
+    note: 'No OpenAPI/Swagger/GraphQL/AsyncAPI document was found on any ShiftMed host
+      — see x-coverage. api.shiftmed.com serves an unrelated single-page app ("I9 Section
+      2") that answers HTTP 200 with an HTML shell for every unmatched path, so spec
+      probes there are soft-404s and were rejected.'
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/shiftmed-domain-security.yml
 - type: Website
+  url: https://www.shiftmed.com/
+- type: Support
+  url: https://help.shiftmed.com/en/
+- type: Blog
+  url: https://www.shiftmed.com/professionals/blog/
+- type: Login
+  url: https://portal.shiftmed.com/login
+- type: SignUp
+  url: https://apply.shiftmed.com/
+- type: TermsOfService
+  url: https://www.shiftmed.com/terms/
+- type: PrivacyPolicy
+  url: https://www.shiftmed.com/privacy/
+- type: Contact
+  url: https://www.shiftmed.com/about/contact/
+- type: Integrations
+  url: https://www.shiftmed.com/about/partners/
+- type: Press
+  url: https://www.shiftmed.com/about/press-releases/
+- type: KnowledgeBase
+  url: https://www.shiftmed.com/insights/knowledge-center/
+- type: LinkedIn
+  url: https://www.linkedin.com/company/shiftmed
+- type: YouTube
+  url: https://www.youtube.com/channel/UC38kDGvSQpGqEf4a-gGPWUg
+- type: SecondaryMarket
   url: https://forgeglobal.com/shiftmed_stock/
+- type: LLMsTxt
+  url: llms/shiftmed-llms.txt
+x-enrichment:
+  date: '2026-08-05'
+  status: minimal
+  artifacts_added: 3
+  pass: local-v1
+x-coverage:
+  state: gated
+  reason: sales-gate
+  detail: ShiftMed publicly markets "a public API" that "can be embedded in health
+    system platforms", but ships no developer host at all — developer.shiftmed.com and
+    docs.shiftmed.com do not resolve, and the only documented route to the API is the
+    "Book a Workforce Consultation" form on the partners page.
+  evidence:
+  - url: https://www.shiftmed.com/about/partners/
+    status: 200
+  - url: https://api.shiftmed.com/v1/health
+    status: 200
+  - url: https://api.shiftmed.com/openapi.json
+    status: 200
+  - url: https://www.shiftmed.com/.well-known/security.txt
+    status: 404
+  - url: https://www.shiftmed.com/llms.txt
+    status: 404
+  checked: '2026-08-05'
