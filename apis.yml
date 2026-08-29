@@ -10,6 +10,17 @@ description: 'ShiftMed is a McLean, Virginia healthcare workforce technology com
   Smartlinx and Attendance on Demand — alongside file-based SFTP feeds. ShiftMed publishes
   no public developer portal, documentation, specification or SDK; API access is arranged
   through a workforce consultation.'
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://images.ctfassets.net/5ghoewqh73wu/1g43njpFzYtQFmeTGNhdcN/b98de6dbb6af4fafc7c41b2a714307f8/Home_Hero_HighRes.webp
 url: https://raw.githubusercontent.com/api-evangelist/shiftmed/refs/heads/main/apis.yml
 x-type: company
